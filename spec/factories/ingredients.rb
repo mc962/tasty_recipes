@@ -12,6 +12,17 @@
 
 FactoryBot.define do
   factory :ingredient do
+    name { Faker::Food.ingredient }
+    description { Faker::Food.description }
     
+    # factory :ingredient_with_recipes do
+    #   ignore do
+    #     recipe_count 5
+    #   end
+
+    #   after(:create) do |ingredient, evaluator| do
+    #     FactoryBot.create_list(:recipe, evaluator.recipe_count, ingredients: [ingredient])
+    #   end
+    # end
   end
 end

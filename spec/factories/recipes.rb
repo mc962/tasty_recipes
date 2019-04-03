@@ -14,6 +14,9 @@
 
 FactoryBot.define do
   factory :recipe do
-    
+    name { Faker::Food.dish }
+    description { Faker::Food.description }
+    instructions { [] } # TODO change this to a real value at some point
+    completion_time { Float(Random.rand(100)) }
   end
 end
