@@ -7,8 +7,15 @@
     <%= f.label :description%>
     <%= f.text_area :description %>
     
-    <%= f.label :instructions%>    
-    <%# <%= f. :instructions%> %>
+    <%= f.label :instructions     %>
+    <%= f.text_field :instructions, multiple: true %>
+    <div class='instruction-entry-container'>
+        <%= text_area_tag :instruction %>
+        <%= button_tag(type: :button) do %>
+            Add Instruction
+        <% end %>
+    </div>
+
 
     <%= f.label :completion_time %>
     <%= f.number_field :completion_time %>
@@ -17,7 +24,6 @@
     <%= f.file_field :profile_image %>
 
     <%= f.label 'Ingredients', for: :recipe_ingredient_ids %>
-    <%# <%= f.select :ingredient_ids, options_from_collection_for_select(@ingredients, :id, :name), { prompt: 'Select Ingredients' } %> %>
 
     <%= f.submit %>
 <% end %>

@@ -43,9 +43,9 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(
             :name, 
             :description, 
-            :instructions, 
-            :completion_time, 
-            :ingredient_ids
+            :completion_time,
+            :instructions
+            # :ingredient_ids
         )
     end
 end
