@@ -1,9 +1,8 @@
 class RecipesController < ApplicationController
     def create
         @recipe = Recipe.new(recipe_params)
-
         if @recipe.save
-            redirect_to :show
+            redirect_to recipe_path(@recipe)
         else
             # TODO set friendly error messages
             flash.now[:error] = @recipe.errors.full_messages
@@ -44,7 +43,7 @@ class RecipesController < ApplicationController
             :name, 
             :description, 
             :completion_time,
-            :instructions
+            instructions: []
             # :ingredient_ids
         )
     end

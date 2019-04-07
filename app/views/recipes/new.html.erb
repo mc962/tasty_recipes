@@ -1,29 +1,38 @@
 <h1>Add a New Recipe</h1>
 
-<%= form_for :recipe  do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= javascript_pack_tag 'recipes', 'data-turbolinks-track': 'reload' %>
 
-    <%= f.label :description%>
-    <%= f.text_area :description %>
+
+<%= form_for @recipe, html: {id: 'new_recipe_form'}  do |f| %>
+    <section class='new-recipe-information-container'>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :description%>
+        <%= f.text_area :description %>
+    </section>
     
-    <%= f.label :instructions     %>
-    <%= f.text_field :instructions, multiple: true %>
-    <div class='instruction-entry-container'>
-        <%= text_area_tag :instruction %>
-        <%= button_tag(type: :button) do %>
-            Add Instruction
-        <% end %>
-    </div>
+    <section class='new-recipe-instructions-container'>
+        <ul id='current_instructions'>
+            <%# <li class='current-instruction sample-item'>Sample Item 1</li>
+            <li class='current-instruction sample-item'>Sample Item 2</li> %>
+        </ul>
 
+        <div class='instruction-entry-container'>
+            <%= text_area_tag :instruction %>
+            <%= button_tag(type: :button, id: 'add_instruction_btn') do %>
+                Add Instruction
+            <% end %>
+        </div>
+    </section>
 
-    <%= f.label :completion_time %>
-    <%= f.number_field :completion_time %>
+    <section class='new-recipe-additional-info-container'>
+        <%= f.label :completion_time %>
+        <%= f.number_field :completion_time %>
 
-    <%= f.label :profile_image %>
-    <%= f.file_field :profile_image %>
-
-    <%= f.label 'Ingredients', for: :recipe_ingredient_ids %>
+        <%= f.label :profile_image %>
+        <%= f.file_field :profile_image %>
+    </section>
 
     <%= f.submit %>
 <% end %>

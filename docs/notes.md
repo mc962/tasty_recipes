@@ -8,3 +8,6 @@
 - Specific parts of the recipe may be highlighted from the instructions, to add to the integredients section
 - Ingredient submission will not submit a list of recipes it belongs to, as that is not how the recipe is created. However, this information may be displayed in the show page
 - Recipe submission should include a list of ingredients it possesses, this will create the relationship between recipe and ingredients. A recipe will then be able to see all ingredients it possesses, and an ingredient will be able to see all recipes it is a part of
+
+- Preserve ingredient order by tagging it to an instruction index position (should this go in the link metadata?)
+- Add quantity for ingredient to be used...this should go in the join table link, everything in SI units, but translate to/from client's unit based on settings (likely stored in cookie)

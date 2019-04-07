@@ -1,4 +1,9 @@
 <h1><%= @recipe.name %></h1>
 <p><%= @recipe.description %></p>
-<!-- 
-<img src=<%= @recipe.image_url %> alt=<%= "Tasty prepared #{@recipe.name}" %> /> -->
+
+<label for='recipe_instructions'>Instructions</label>
+<ul id='recipe_instructions'>
+    <% @recipe.instructions.each do |instruction| %>
+        <li class='recipe-instruction-item'><%= instruction %></li>
+    <% end %>
+</ul>

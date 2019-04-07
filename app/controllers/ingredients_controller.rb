@@ -2,13 +2,14 @@ class IngredientsController < ApplicationController
     def create
         @ingredient = Ingredient.new(ingredient_params)
 
-        if @ingredient.save
-            redirect_to :show
-        else
-            # TODO set friendly error messages
-            flash.now[:error] = @ingredient.errors.full_messages
-            render :new
-        end
+        # TODO comment out now just to test form submission
+        # if @ingredient.save
+        #     redirect_to :show
+        # else
+        #     # TODO set friendly error messages
+        #     flash.now[:error] = @ingredient.errors.full_messages
+        #     render :new
+        # end
     end
 
     def new
