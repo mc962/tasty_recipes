@@ -1,5 +1,5 @@
-import { setupFormListeners } from '../recipes/forms';
+import { initializeNewRecipeForm } from '../recipes/forms';
 
 document.addEventListener('DOMContentLoaded', () => {
-    setupFormListeners();
+    initializeNewRecipeForm();
 });

@@ -5,20 +5,42 @@
 
 <%= form_for @recipe, html: {id: 'new_recipe_form'}  do |f| %>
     <section class='new-recipe-information-container'>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= label_tag :name %>
+        <%= text_field_tag :name %>
 
-        <%= f.label :description%>
-        <%= f.text_area :description %>
+        <%= label_tag :description%>
+        <%= text_area_tag :description %>
     </section>
     
-    <section class='new-recipe-instructions-container'>
+    <label for='new_recipe_ingredients_container'>Ingredients</label>
+    <section id='new_recipe_ingredients_container'>
+        <ul id='current_ingredients'>
+            <%# <li class="current-ingredient" data-instruction-id="889247076" data-ingredient-name="salt" data-ingredient-amount="21" data-ingredient-unit="g">21g salt</li> %>
+            <%# <li class="current-ingredient" data-instruction-id="4260216960" data-ingredient-name="sugar" data-ingredient-amount="11" data-ingredient-unit="g">11g sugar</li> %>
+        </ul>
+    </section>
+
+    <label for='new_recipe_instructions_container'>Instructions</label>
+    <section id='new_recipe_instructions_container'>
         <ul id='current_instructions'>
-            <%# <li class='current-instruction sample-item'>Sample Item 1</li>
-            <li class='current-instruction sample-item'>Sample Item 2</li> %>
+            <%# <li class="current-instruction" data-instruction-id="889247076" data-instruction-text="Add salt">Add salt</li> %>
+            <%# <li class="current-instruction" data-instruction-id="4260216960" data-instruction-text="Add sugar">Add sugar</li> %>
         </ul>
 
+        <div class='ingredient-entry-container'>
+            <label for='ingredient'>Ingredient</label>
+            <%= text_field_tag :ingredient_name %>
+            
+            <%# all units assumed to be known hard-coded unit until multi-unit support is available %>
+            <label for='ingredient_amount'>Amount</label>
+            <%= number_field_tag :ingredient_amount %>
+
+            <label for='ingredient_unit'>Unit (g, ml, etc.)</label>
+            <%= text_field_tag :ingredient_unit %>
+        </div>
+
         <div class='instruction-entry-container'>
+            <label for="instruction">Instruction Entry</label>
             <%= text_area_tag :instruction %>
             <%= button_tag(type: :button, id: 'add_instruction_btn') do %>
                 Add Instruction
@@ -27,11 +49,11 @@
     </section>
 
     <section class='new-recipe-additional-info-container'>
-        <%= f.label :completion_time %>
-        <%= f.number_field :completion_time %>
+        <%= label_tag :completion_time %>
+        <%= number_field_tag :completion_time %>
 
-        <%= f.label :profile_image %>
-        <%= f.file_field :profile_image %>
+        <%= label_tag :profile_image %>
+        <%= file_field_tag :profile_image %>
     </section>
 
     <%= f.submit %>

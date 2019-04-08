@@ -14,7 +14,9 @@ class Ingredient < ApplicationRecord
     extend FriendlyId
     friendly_id :name, use: :slugged
     
-    has_and_belongs_to_many :recipes # TODO confirm that join table entry is deleted
+    has_many :recipe_step_ingredients
+    has_many :recipe_steps, through: :recipe_step_ingredients
+    has_many :recipes, through: :recipe_steps
     has_one_attached :profile_image
     
     validates :slug, :name, presence: true

@@ -57,20 +57,31 @@ ActiveRecord::Schema.define(version: 2019_04_02_131101) do
     t.index ["slug"], name: "index_ingredients_on_slug", unique: true
   end
 
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.bigint "recipe_id"
+  create_table "recipe_step_ingredients", force: :cascade do |t|
+    t.bigint "recipe_step_id"
     t.bigint "ingredient_id"
+    t.integer "amount"
+    t.integer "amount_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
+    t.index ["ingredient_id"], name: "index_recipe_step_ingredients_on_ingredient_id"
+    t.index ["recipe_step_id"], name: "index_recipe_step_ingredients_on_recipe_step_id"
+  end
+
+  create_table "recipe_steps", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.integer "step_number", null: false
+    t.text "instruction", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
+    t.index ["step_number"], name: "index_recipe_steps_on_step_number", unique: true
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "slug", null: false
     t.string "name", null: false
     t.text "description"
-    t.text "instructions", null: false, array: true
     t.float "completion_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_131101) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "recipe_ingredients", "ingredients"
-  add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_step_ingredients", "ingredients"
+  add_foreign_key "recipe_step_ingredients", "recipe_steps"
+  add_foreign_key "recipe_steps", "recipes"
 end

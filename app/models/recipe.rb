@@ -6,7 +6,6 @@
 #  slug            :string           not null
 #  name            :string           not null
 #  description     :text
-#  instructions    :text             not null, is an Array
 #  completion_time :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -15,9 +14,14 @@
 class Recipe < ApplicationRecord
     extend FriendlyId
     friendly_id :name, use: :slugged
-    
-    has_and_belongs_to_many :ingredients # TODO confirm that join table entry is deleted
+  
+    # if recipe is destroyed, then all matching recipe_steps must also be destroyed
+    has_many :recipe_steps, dependent: :destroy
+    has_many :ingredients, through: :recipe_steps
+
     has_one_attached :profile_image
 
-    validates :slug, :name, :instructions, presence: true
+    accepts_nested_attributes_for :recipe_steps
+
+    validates :slug, :name, presence: true
 end

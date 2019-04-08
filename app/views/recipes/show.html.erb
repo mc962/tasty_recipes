@@ -3,7 +3,7 @@
 
 <label for='recipe_instructions'>Instructions</label>
 <ul id='recipe_instructions'>
-    <% @recipe.instructions.each do |instruction| %>
-        <li class='recipe-instruction-item'><%= instruction %></li>
+    <% @recipe.recipe_steps.each do |recipe_step| %>
+        <li class='recipe-instruction-item'><%= recipe_step.instruction %></li>
     <% end %>
 </ul>

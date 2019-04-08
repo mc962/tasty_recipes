@@ -4,7 +4,6 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :slug, null: false
       t.string :name, null: false
       t.text :description
-      t.text :instructions, array: true, null: false
       t.float :completion_time
 
       t.timestamps

@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
         else
             # TODO set friendly error messages
             flash.now[:error] = @recipe.errors.full_messages
-            render :new
+            render json: {}, status: 422
         end
     end
 
@@ -43,8 +43,18 @@ class RecipesController < ApplicationController
             :name, 
             :description, 
             :completion_time,
-            instructions: []
-            # :ingredient_ids
+            recipe_steps_attributes: [
+                :instruction, 
+                :step_number,
+                recipe_step_ingredients_attributes: [
+                    :amount,
+                    :amount_unit,
+                    ingredient_attributes: [
+                        :name, 
+                        :description
+                    ]
+                ]
+            ]
         )
     end
 end

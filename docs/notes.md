@@ -11,3 +11,4 @@
 
 - Preserve ingredient order by tagging it to an instruction index position (should this go in the link metadata?)
 - Add quantity for ingredient to be used...this should go in the join table link, everything in SI units, but translate to/from client's unit based on settings (likely stored in cookie)
+- For simplicity, ingredients will not be reordered on the form when the steps are re-ordered, however, when displaying, ingredients will be reordered to match underlying recipe step model order number
