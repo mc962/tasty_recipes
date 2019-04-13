@@ -1,4 +1,4 @@
-<section class='recipe-step-ingredients-container'>
+<section class='recipe-step-ingredients-container form_visibility_class(#{local_assigns[:show_partial]})'>
     <%= local_assigns[:recipe_step_form].fields_for RecipeStepIngredient.new do |recipe_step_ingredient |%>
         <%= recipe_step_ingredient.fields_for Ingredient.new do |ingredient| %>
             <%= ingredient.label :name %>

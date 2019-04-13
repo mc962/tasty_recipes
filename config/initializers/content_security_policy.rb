@@ -11,7 +11,12 @@ Rails.application.config.content_security_policy do |policy|
   policy.object_src  :none
   policy.script_src  :self, :https
   policy.style_src   :self, :https
-  policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
+
+  if Rails.env.development? || Rails.env.test?
+    policy.script_src :self, :https, :unsafe_eval
+    policy.style_src   :self, :https, :blob, :unsafe_inline
+    policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035"
+  end
   
   # Specify URI for violation reports
   policy.report_uri "https://sentry.io/api/1427916/security/?sentry_key=ef951052e4384d33a258137a8af05c97"

@@ -1,8 +1,8 @@
-<section class='recipe-step-container'>
+<section class=<%= "recipe-step-container form_visibility_class(#{local_assigns[:show_partial]})" %>%>
     <%= local_assigns[:recipe_form].fields_for RecipeStep.new do |recipe_step| %>
         <%= recipe_step.label :instruction %>
         <%= recipe_step.text_area :instruction %>
         
-        <%= render partial: 'recipes/shared/ingredient', locals: {recipe_step_form: recipe_step} %>
+        <%= render partial: 'recipes/shared/ingredient', locals: {recipe_step_form: recipe_step, show_partial: true} %>
     <% end %>
 </section>

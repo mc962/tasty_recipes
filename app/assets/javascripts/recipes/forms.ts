@@ -1,3 +1,5 @@
+import '../../stylesheets/recipes'
+
 import Sortable from 'sortablejs';
 
 const addInstructionListener = () => {
