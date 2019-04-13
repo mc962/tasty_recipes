@@ -11,7 +11,12 @@
         <%= label_tag :description%>
         <%= text_area_tag :description %>
     </section>
+
+    <%= render partial: 'recipes/shared/recipe_step_instruction', locals: {recipe_form: f} %>
     
+<!-- 
+    <hr /><hr /><hr /><hr /><hr /><hr />
+
     <label for='new_recipe_ingredients_container'>Ingredients</label>
     <section id='new_recipe_ingredients_container'>
         <ul id='current_ingredients'>
@@ -55,6 +60,6 @@
         <%= label_tag :profile_image %>
         <%= file_field_tag :profile_image %>
     </section>
-
+-->
     <%= f.submit %>
 <% end %>
